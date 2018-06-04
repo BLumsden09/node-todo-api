@@ -1,11 +1,16 @@
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
-var data = {
-  id: 10
-};
+var password = '123abc!';
 
-var token = jwt.sign(data, '123abc');
-console.log(token);
+// bcrypt.genSalt(10, (err, salt) => {
+//   bcrypt.hash(password, salt, (err, hash) =>{
+//     console.log(hash);
+//   });
+// });
 
-var decoded = jwt.verify(token, '123abc');
-console.log(decoded);
+var hashPass = '$2a$10$UGBQy1wpQP1VDwt7kUgoZu.IZZ/zcTtl.vqOf9Wv72ut.EK/yV3Wy';
+
+bcrypt.compare(password, hashPass, (err, res) => {
+  console.log(res);
+});
